@@ -37,6 +37,10 @@ cd java-docs-samples/pubsub/streaming-analytics
 mvn compile exec:java \
 -Dexec.mainClass=com.examples.pubsub.streaming.PubSubToGcs \
 -Dexec.cleanupDaemonThreads=false \
--Dexec.args="--project=$PROJECT_ID \
-    --topic=$TOPIC_ID \
-    --outputBucket=$BUCKET_NAME"
+-Dexec.args=" \
+    --project=$PROJECT_ID \
+    --region=$REGION \
+    --inputTopic=projects/$PROJECT_ID/topics/$TOPIC_ID \
+    --output=gs://$BUCKET_NAME/samples/output \
+    --runner=DataflowRunner \
+    --windowSize=2"
